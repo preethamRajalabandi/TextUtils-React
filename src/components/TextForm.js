@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 export default function TextForm(props) {
     const [text, setText] = useState("");
     // text = "new text" // Wrong way to change the state
-    // setText("new text") // Coreect way to change the state
+    // setText("new text") // Correct way to change the state
 
     const handleUpClick = () => {
         let newText = text.toUpperCase();
@@ -28,11 +28,7 @@ export default function TextForm(props) {
     }
 
     const handleCopy = () => {
-        const copyText = document.getElementById("myBox")
-        copyText.select();
-        navigator.clipboard.writeText(copyText.value);
-        document.getSelection().removeAllRanges();
-        props.showAlert("Copied to Clipboard!", "success")
+        navigator.clipboard.writeText(text);
         text.length > 0 ? props.showAlert("Copied to Clipboard!", "success") : props.showAlert("No text to copy, Please add some text!", "warning")
     }
 
@@ -57,7 +53,7 @@ export default function TextForm(props) {
             </div>
             <div className="container my-2" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your text summary</h2>
-                <p>{text.split(" ").filter((element) => { return element.length !== 0 }).length} words and {text.length} characters</p>
+                <p>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} minutes to read</p>
 
                 <h2>Preview</h2>

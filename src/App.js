@@ -23,17 +23,7 @@ function App() {
       setAlert(null);
     }, 1500)
   }
-
-  const removeBodyClass = () => {
-    document.body.classList.remove('bg-light')
-    document.body.classList.remove('bg-dark')
-    document.body.classList.remove('bg-warning')
-    document.body.classList.remove('bg-danger')
-    document.body.classList.remove('bg-success')
-  }
-  const toggleMode = (cls) => {
-    removeBodyClass()
-    document.body.classList.add('bg-'+cls)
+  const toggleMode = () => {
     if (mode === 'light') {
       setMode('dark')
       document.body.style.backgroundColor = '#042743';
@@ -47,8 +37,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar title="TextUtils" aboutText="About TextUtils"/> */}
-        {/* <Navbar/> */}
         <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container my-3">
