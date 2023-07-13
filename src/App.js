@@ -1,4 +1,9 @@
 import { useState } from 'react';
+import React, { Fragment } from 'react';
+import { PDFViewer } from '@react-pdf/renderer'
+import Invoice from './components/reports/Invoice'
+import invoice from './data/invoice'
+
 import './App.css';
 import About from './components/About';
 import Navbar from './components/Navbar';
@@ -49,10 +54,19 @@ function App() {
             <Route
               exact path="/about"
               element={<About mode={mode} />} />
+
+            <Route
+              exact path="/createpdf"
+              element={<Fragment>
+                <PDFViewer width="1000" height="600" className="app" >
+                  <Invoice invoice={invoice} />
+                </PDFViewer>
+              </Fragment>} />
           </Routes>
 
         </div>
       </BrowserRouter>
+
     </>
   );
 }
